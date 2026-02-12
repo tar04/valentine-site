@@ -1,0 +1,125 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  overflow: hidden;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.safe-area {
+  text-align: center;
+}
+
+.title {
+  color: white;
+  margin-bottom: 30px;
+  font-size: 2.7rem;
+  animation: fadeIn 1.5s ease;
+}
+
+.buttons-row {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  position: relative;
+}
+
+button {
+  padding: 14px 36px;
+  border-radius: 40px;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+.yes {
+  background: #ff4d6d;
+  color: white;
+  box-shadow: 0 0 20px rgba(255, 77, 109, 0.6);
+}
+
+.no {
+  background: #eee;
+  color: #333;
+}
+
+.hearts span {
+  position: absolute;
+  bottom: -50px;
+  animation: float 10s linear infinite;
+  font-size: 24px;
+  opacity: 0.8;
+}
+
+.hearts span:nth-child(n) {
+  left: calc(100% * var(--i));
+}
+
+.hearts span:nth-child(1) { left: 5%; animation-delay: 0s; }
+.hearts span:nth-child(2) { left: 15%; animation-delay: 2s; }
+.hearts span:nth-child(3) { left: 25%; animation-delay: 4s; }
+.hearts span:nth-child(4) { left: 35%; animation-delay: 1s; }
+.hearts span:nth-child(5) { left: 45%; animation-delay: 3s; }
+.hearts span:nth-child(6) { left: 55%; animation-delay: 5s; }
+.hearts span:nth-child(7) { left: 65%; animation-delay: 2s; }
+.hearts span:nth-child(8) { left: 75%; animation-delay: 4s; }
+.hearts span:nth-child(9) { left: 85%; animation-delay: 1s; }
+.hearts span:nth-child(10) { left: 95%; animation-delay: 3s; }
+
+@keyframes float {
+  0% { transform: translateY(0) scale(0.8); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(-110vh) scale(1.4); opacity: 0; }
+}
+
+/* 🎆 Феєрверки */
+.fireworks {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.firework {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: transparent;
+  border-radius: 50%;
+  animation: explode 1.5s ease-out infinite;
+}
+
+.firework:nth-child(1) { top: 30%; left: 20%; animation-delay: 0s; }
+.firework:nth-child(2) { top: 40%; left: 70%; animation-delay: 0.3s; }
+.firework:nth-child(3) { top: 60%; left: 40%; animation-delay: 0.6s; }
+.firework:nth-child(4) { top: 25%; left: 50%; animation-delay: 0.9s; }
+.firework:nth-child(5) { top: 55%; left: 80%; animation-delay: 1.2s; }
+.firework:nth-child(6) { top: 35%; left: 10%; animation-delay: 1.5s; }
+
+@keyframes explode {
+  0% {
+    box-shadow: 0 0 #fff, 0 0 #ff4d6d, 0 0 #ffd166, 0 0 #4d96ff;
+    opacity: 1;
+  }
+  100% {
+    box-shadow: 80px -40px #fff, -80px -40px #ff4d6d, 60px 60px #ffd166, -60px 60px #4d96ff;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn { from {opacity:0; transform:translateY(30px);} to {opacity:1; transform:translateY(0);} }
+.animate { animation: pop 0.6s ease infinite alternate; }
+@keyframes pop { from {transform: scale(1);} to {transform: scale(1.08);} }
