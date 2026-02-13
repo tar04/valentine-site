@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -d build"
+    "deploy": "yarn predeploy && gh-pages -d dist"
   },
   "dependencies": {
     "react": "^19.2.0",
