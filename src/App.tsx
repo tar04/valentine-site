@@ -1,119 +1,108 @@
-import { useEffect, useRef, useState } from "react";
+import {useEffect, useRef, useState, FC} from "react";
 
-import "./App.css";
+import "../src/styles/App.css";
 
-function App() {
-    const [noPosition, setNoPosition] = useState({ top: 0, left: 0 });
-    const [accepted, setAccepted] = useState(false);
-    const [musicStarted, setMusicStarted] = useState(false);
 
-    const noButtonRef = useRef<HTMLButtonElement | null>(null);
-    const yesButtonRef = useRef<HTMLButtonElement | null>(null);
-    const safeAreaRef = useRef<HTMLDivElement | null>(null);
-    const audioRef = useRef<HTMLAudioElement | null>(null);
+export const App: FC = () => {
+  const [noPosition, setNoPosition] = useState({top: 0, left: 0});
+  const [accepted, setAccepted] = useState(false);
 
-    const moveNoButton = () => {
-        if (!noButtonRef.current || !yesButtonRef.current || !safeAreaRef.current) return;
+  const noButtonRef = useRef<HTMLButtonElement | null>(null);
+  const yesButtonRef = useRef<HTMLButtonElement | null>(null);
+  const safeAreaRef = useRef<HTMLDivElement | null>(null);
 
-        const buttonWidth = noButtonRef.current.offsetWidth;
-        const buttonHeight = noButtonRef.current.offsetHeight;
+  const moveNoButton = () => {
+    if (!noButtonRef.current || !yesButtonRef.current || !safeAreaRef.current) return;
 
-        const safeRect = safeAreaRef.current.getBoundingClientRect();
-        const yesRect = yesButtonRef.current.getBoundingClientRect();
+    const buttonWidth = noButtonRef.current.offsetWidth;
+    const buttonHeight = noButtonRef.current.offsetHeight;
 
-        const padding = 20;
-        const maxX = window.innerWidth - buttonWidth - padding;
-        const maxY = window.innerHeight - buttonHeight - padding;
+    const safeRect = safeAreaRef.current.getBoundingClientRect();
+    const yesRect = yesButtonRef.current.getBoundingClientRect();
 
-        let randomX, randomY;
+    const padding = 20;
+    const maxX = window.innerWidth - buttonWidth - padding;
+    const maxY = window.innerHeight - buttonHeight - padding;
 
-        do {
-            randomX = Math.random() * (maxX - padding) + padding;
-            randomY = Math.random() * (maxY - padding) + padding;
-        } while (
-            // перевірка перекриття тексту
-        (randomX < safeRect.right &&
-            randomX + buttonWidth > safeRect.left &&
-            randomY < safeRect.bottom &&
-            randomY + buttonHeight > safeRect.top) ||
-        // перевірка перекриття кнопки "Так"
-        (randomX < yesRect.right &&
-            randomX + buttonWidth > yesRect.left &&
-            randomY < yesRect.bottom &&
-            randomY + buttonHeight > yesRect.top)
-            );
+    let randomX, randomY;
 
-        setNoPosition({ top: randomY, left: randomX });
-    };
+    do {
+      randomX = Math.random() * (maxX - padding) + padding;
+      randomY = Math.random() * (maxY - padding) + padding;
+    } while (
+      // перевірка перекриття тексту
+    (randomX < safeRect.right &&
+      randomX + buttonWidth > safeRect.left &&
+      randomY < safeRect.bottom &&
+      randomY + buttonHeight > safeRect.top) ||
+    // перевірка перекриття кнопки "Так"
+    (randomX < yesRect.right &&
+      randomX + buttonWidth > yesRect.left &&
+      randomY < yesRect.bottom &&
+      randomY + buttonHeight > yesRect.top)
+      );
 
-    const startMusic = () => {
-        if (!musicStarted && audioRef.current) {
-            audioRef.current.play();
-            setMusicStarted(true);
-        }
-    };
+    setNoPosition({top: randomY, left: randomX});
+  };
 
-    useEffect(() => {
-        // стартове положення поруч з кнопкою "Так"
-        if (yesButtonRef.current) {
-            const yesRect = yesButtonRef.current.getBoundingClientRect();
-            setNoPosition({
-                top: yesRect.top,
-                left: yesRect.right + 40,
-            });
-        }
-    }, []);
+  useEffect(() => {
+    if (yesButtonRef.current) {
+      const yesRect = yesButtonRef.current.getBoundingClientRect();
+      setNoPosition({
+        top: yesRect.top,
+        left: yesRect.right + 40,
+      });
+    }
+  }, []);
 
-    return (
-        <div className="container" onClick={startMusic}>
+  return (
+    <div className="container">
 
-            {/* Flying hearts */}
-            <div className="hearts">
-                {[...Array(15)].map((_, i) => (
-                    <span key={i}>❤️</span>
-                ))}
-            </div>
+      {/* Flying hearts */}
+      <div className="hearts">
+        {[...Array(15)].map((_, i) => (
+          <span key={i}>❤️</span>
+        ))}
+      </div>
 
-            {/* 🎆 Феєрверки */}
-            {accepted && (
-                <div className="fireworks">
-                    {[...Array(6)].map((_, i) => (
-                        <div key={i} className="firework" />
-                    ))}
-                </div>
-            )}
-
-            {!accepted ? (
-                <div className="safe-area" ref={safeAreaRef}>
-                    <h1 className="title">Ти будеш моєю валентинкою? 💘</h1>
-
-                    <div className="buttons-row">
-                        <button
-                            ref={yesButtonRef}
-                            className="yes animate"
-                            onClick={() => setAccepted(true)}
-                        >
-                            Так ❤️
-                        </button>
-
-                        <button
-                            ref={noButtonRef}
-                            className="no"
-                            style={{ position: "fixed", top: noPosition.top, left: noPosition.left }}
-                            onMouseEnter={moveNoButton}
-                            onTouchStart={moveNoButton}
-                        >
-                            Ні 😢
-                        </button>
-                    </div>
-                </div>
-            ) : (
-                <h1 className="success animate">
-                    Урааа! 💖🎆 Тепер ти моя валентинка!
-                </h1>
-            )}
+      {/* 🎆 Феєрверки */}
+      {accepted && (
+        <div className="fireworks">
+          {[...Array(6)].map((_, i) => (
+            <div key={i} className="firework"/>
+          ))}
         </div>
-    );
-}
+      )}
 
-export default App;
+      {!accepted ? (
+        <div className="safe-area" ref={safeAreaRef}>
+          <h1 className="title">Ти будеш моєю валентинкою? 💘</h1>
+
+          <div className="buttons-row">
+            <button
+              ref={yesButtonRef}
+              className="yes animate"
+              onClick={() => setAccepted(true)}
+            >
+              Так ❤️
+            </button>
+
+            <button
+              ref={noButtonRef}
+              className="no"
+              style={{position: "fixed", top: noPosition.top, left: noPosition.left}}
+              onMouseEnter={moveNoButton}
+              onTouchStart={moveNoButton}
+            >
+              Ні 😢
+            </button>
+          </div>
+        </div>
+      ) : (
+        <h1 className="success animate">
+          Урааа! 💖🎆 Тепер ти моя валентинка!
+        </h1>
+      )}
+    </div>
+  );
+};
