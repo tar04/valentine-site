@@ -22,11 +22,9 @@
     "sourceMap": false,
     "strict": true,
     "target": "ES6",
-    "types": [
-      "vitest/globals"
-    ],
     "noImplicitAny": false
   },
+  "typeRoots": ["./types"],
   "exclude": [
     "node_modules",
     "dist"

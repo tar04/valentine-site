@@ -12,15 +12,76 @@ body {
   align-items: center;
 }
 
-.safe-area {
-  text-align: center;
+.title {
+  margin-bottom: 30px;
+  font-size: 4rem;
+  color: #ffffff;
 }
 
-.title {
-  color: white;
-  margin-bottom: 30px;
-  font-size: 2.7rem;
-  animation: fadeIn 1.5s ease;
+.subtitle {
+  font-size: 3rem;
+  color: #ffffff;
+  margin: 0;
+  margin-bottom: 12px;
+}
+
+.cursive-text {
+  font-family: "Great Vibes", cursive;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.6),
+  0 0 15px rgba(255, 182, 193, 0.6);
+}
+
+.accepted-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.invitation-wrapper {
+  width: 620px;
+  padding: 32px 40px;
+  color: #3b2f2f;
+  border-radius: 6px;
+  font-family: "Great Vibes", cursive;
+  font-size: 21px;
+  line-height: 1.6;
+  z-index: 999999;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 29px,
+    #ccc 30px
+  );
+  background-color: #f8f4ee;
+  background-size: 100% 30px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  animation: flyIn 1s ease-out forwards;
+  
+  .signature {
+    text-align: right;
+    margin-top: 48px;
+    font-size: 28px;
+  }
+}
+
+@keyframes flyIn {
+  0% {
+    transform: translateY(-500px) rotate(-15deg);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(30px) rotate(5deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.safe-area {
+  text-align: center;
 }
 
 .buttons-row {
@@ -47,6 +108,10 @@ button:hover {
   background: #ff4d6d;
   color: white;
   box-shadow: 0 0 20px rgba(255, 77, 109, 0.6);
+}
+
+.yes {
+  margin-left: -115px;
 }
 
 .no {
@@ -130,7 +195,6 @@ button:hover {
   }
 }
 
-/* 🎆 Феєрверки */
 .fireworks {
   position: fixed;
   top: 0;

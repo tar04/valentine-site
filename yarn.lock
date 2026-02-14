@@ -358,6 +358,11 @@
     "@eslint/core" "^0.17.0"
     levn "^0.4.1"
 
+"@fontsource/great-vibes@^5.2.8":
+  version "5.2.8"
+  resolved "https://registry.yarnpkg.com/@fontsource/great-vibes/-/great-vibes-5.2.8.tgz#9ad383c9960953da217b5b0a0a33249d4b56200a"
+  integrity sha512-/PATz436NGixjNaigierUpv50wfNv2UhAAijcCPkn4ynvl41x66TCLbXVSVfp4pth9gjWnGqgoj0lVIhHapAuw==
+
 "@humanfs/core@^0.19.1":
   version "0.19.1"
   resolved "https://registry.yarnpkg.com/@humanfs/core/-/core-0.19.1.tgz#17c55ca7d426733fe3c561906b8173c336b40a77"

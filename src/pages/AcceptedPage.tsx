@@ -9,9 +9,11 @@ interface IAcceptedPage {
 
 export const AcceptedPage: FC<IAcceptedPage> = ({setStatus}) => {
 
-  return (<h1 className="success animate">
-      Урааа! 💖🎆 Тепер ти моя валентинка!
-      <button className="continue" onClick={() => setStatus('invitation')}>Далі</button>
-    </h1>
+  return (
+    <div className="accepted-wrapper">
+      <h1 className="title cursive-text">Ураааа 🎊 Я так і знав! 💖</h1>
+      <h2 className="subtitle cursive-text">Так сильно любаю тебе, моя принцесо! ❤️❤️❤️</h2>
+      <button className="continue" onClick={() => setStatus('invitation')}>Тут, здається, для тебе лист</button>
+    </div>
   );
 };

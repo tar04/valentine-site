@@ -34,16 +34,14 @@ export const PendingPage: FC<IPendingPage> = ({setStatus}) => {
       randomX = Math.random() * (maxX - padding) + padding;
       randomY = Math.random() * (maxY - padding) + padding;
     } while (
-      // перевірка перекриття тексту
-    (randomX < safeRect.right &&
-      randomX + buttonWidth > safeRect.left &&
-      randomY < safeRect.bottom &&
-      randomY + buttonHeight > safeRect.top) ||
-    // перевірка перекриття кнопки "Так"
-    (randomX < yesRect.right &&
-      randomX + buttonWidth > yesRect.left &&
-      randomY < yesRect.bottom &&
-      randomY + buttonHeight > yesRect.top)
+      (randomX < safeRect.right &&
+        randomX + buttonWidth > safeRect.left &&
+        randomY < safeRect.bottom &&
+        randomY + buttonHeight > safeRect.top) ||
+      (randomX < yesRect.right &&
+        randomX + buttonWidth > yesRect.left &&
+        randomY < yesRect.bottom &&
+        randomY + buttonHeight > yesRect.top)
       );
 
     setNoPosition({top: randomY, left: randomX});
@@ -60,7 +58,7 @@ export const PendingPage: FC<IPendingPage> = ({setStatus}) => {
   }, []);
   return (
     <div className="safe-area" ref={safeAreaRef}>
-      <h1 className="title">Ти будеш моєю валентинкою? 💘</h1>
+      <h1 className="title cursive-text">Ти будеш моєю валентинкою? 💘</h1>
 
       <div className="buttons-row">
         <button
@@ -71,15 +69,15 @@ export const PendingPage: FC<IPendingPage> = ({setStatus}) => {
           Так ❤️
         </button>
 
-        <button
-          ref={noButtonRef}
-          className="no"
-          style={{position: "fixed", top: noPosition.top, left: noPosition.left}}
-          onMouseEnter={moveNoButton}
-          onTouchStart={moveNoButton}
-        >
-          Ні 😢
-        </button>
+          <button
+            ref={noButtonRef}
+            className="no"
+            style={{position: "fixed", top: noPosition.top, left: noPosition.left}}
+            onMouseEnter={moveNoButton}
+            onTouchStart={moveNoButton}
+          >
+            Ні 😢
+          </button>
       </div>
     </div>
   );

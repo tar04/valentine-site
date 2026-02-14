@@ -1,4 +1,5 @@
 import {createRoot} from 'react-dom/client';
+import "@fontsource/great-vibes";
 
 import {App} from './App';
 
